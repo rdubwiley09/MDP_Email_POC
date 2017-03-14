@@ -1,0 +1,25 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+extends base
+block main
+  div.outer
+    div.main
+      .row
+        .col-sm-2
+          h2.header {{title}}
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          ul.flash
+            {% for message in messages %}
+            li {{ message }}
+            {% endfor %}  
+          {% endif %}
+          {% endwith %}
+      .row.form-area
+        .col-sm-2
+          form(id="form", method='POST', role='form')
+            {{wtf.quick_form(response, button_map={'submit':'success'})}}
+          footer
+            p.footer Built by Reform MI Dems
+            p.footer Contact Ryan Wiley with any questions: wileyrya@gmail.com
+          
